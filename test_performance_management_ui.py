@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QTextEdit, QPushButton, QLabel, QListWidget, QTabWidget
-from PyQt6.QtCore import QThread, pyqtSignal
+from PyQt6.QtCore import QThread, pyqtSignal, Qt
 from transformers import pipeline
 
 
@@ -93,6 +93,9 @@ class AccomplishmentApp(QWidget):
         # QLabel to display the summary with word wrapping
         self.output_label_sum = QLabel("Summary will appear here.", self)
         self.output_label_sum.setWordWrap(True)  # Enable word wrapping
+        self.output_label_sum.setAlignment(Qt.AlignmentFlag.AlignTop)  # Align the text to the top
+        self.output_label_sum.setStyleSheet(
+            "QLabel { width: 100%; max-width: 550px; }")  # Set a max-width to control wrapping
         layout.addWidget(self.output_label_sum)
 
         self.summarization_tab.setLayout(layout)
